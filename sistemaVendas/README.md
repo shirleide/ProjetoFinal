@@ -1,3 +1,2 @@
 # ProjetoFinal
- Projeto Final da Imersão em Angular
-
+Projeto Final do Treinamento de Imersão em Angular
