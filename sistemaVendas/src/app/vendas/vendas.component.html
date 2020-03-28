@@ -1,11 +1,14 @@
 <app-layout>
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">Produto</h3>
+            <h3 class="card-title">Vendas</h3>
             <div class="row">
                 <div class="form-group col-12">
-                    <label class="control-label" for="nome">Nome:</label>
-                    <input class="form-control" name="nome" [(ngModel)]="produto.nome" />
+                    <label class="control-label">Cliente:</label>
+                    <select [(ngModel)]="vendas.cliente" class="form-control">
+                        <option [ngValue]="null">Selecione</option>
+                        <option *ngFor="let cliente of listaCliente" [ngValue]="cliente">{{ cliente.nome }}</option>
+                    </select>
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-12">
                             <button type="button" class="btn btn-primary" (click)="pesquisar()">Pesquisar</button>
@@ -14,40 +17,33 @@
                 </div>
             </div>
             <div class="row">
-                <div class="table col-lg-12">
+                <div class="table-sm col-lg-12">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th>Código</th>
                                 <th>Nome</th>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>Observação</th>
+                                <th>Data da Venda</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let produto of listaProduto">
+                            <tr *ngFor="let vendas of listaVendasProduto">
                                 <td>
-                                    <input type="radio" name="selecionado" (change)="selecionar(produto)" />
+                                    <input type="radio" name="selecionado" (change)="selecionar(vendas)" />
                                 </td>
-                                <td>{{ produto.codigo }}</td>
-                                <td>{{ produto.nome }}</td>
-                                <td>{{ produto.descricao }}</td>
-                                <td>{{ produto.valor }}</td>
-                                <td>{{ produto.observacao }}</td>
+                                <td>{{ vendas.codigo }}</td>
+                                <td>{{ vendas.cliente.nome }}</td>
+                                <td>{{ vendas.data | date: 'dd/MM/yyyy' }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="btn-group">
-                    <div class="col-4">
+                    <div class="col-lg-6">
                         <button type="button" class="btn btn-primary" (click)="incluir()">Incluir</button>
                     </div>
-                    <div class="col-4">
-                        <button type="button" class="btn btn-primary" (click)="alterar()">Alterar</button>
-                    </div>
-                    <div class="col-4">
+                    <div class="col-lg-6">
                         <button type="button" class="btn btn-primary" (click)="remover()">Excluir</button>
                     </div>
                 </div>
